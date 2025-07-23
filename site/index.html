@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Beeline G.K.</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: white;
+      color: black;
+      font-family: Helvetica, sans-serif;
+      height: 100%;
+      width: 100%;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 33.33% 33.33% 33.33%;
+      grid-template-rows: 33.33% 33.33% 33.33%;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .center-text {
+      justify-content: flex-start;
+      text-align: left;
+      padding-left: 20px;
+      font-size: 1.5rem;
+      flex-direction: column;
+    }
+
+    .main-title {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+
+    .tagline {
+      font-size: 1rem;
+    }
+
+    .idea {
+      justify-content: flex-end;
+      padding-right: 20px;
+      font-weight: bold;
+    }
+
+    .production {
+      justify-content: flex-start;
+      padding-left: 20px;
+      font-weight: bold;
+    }
+
+    .line-container {
+      width: 100%;
+      height: 4px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dashed-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      border-top: 2px dashed black;
+      width: 0;
+      animation: animateLine 3s linear forwards;
+      animation-delay: 1s;
+    }
+
+    @keyframes animateLine {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="grid">
+    <!-- Top row -->
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+
+    <!-- Middle row -->
+    <div class="cell"></div>
+    <div class="cell center-text">
+      <div>
+        <div class="main-title">Beeline G.K.</div>
+        <div class="tagline">is an engineering consulting firm</div>
+      </div>
+    </div>
+    <div class="cell"></div>
+
+    <!-- Bottom row -->
+    <div class="cell idea">Idea</div>
+    <div class="cell">
+      <div class="line-container">
+        <div class="dashed-line" id="animatedLine"></div>
+      </div>
+    </div>
+    <div class="cell production">Production</div>
+  </div>
+
+  <script>
+    function restartAnimation() {
+      const line = document.getElementById("animatedLine");
+      line.style.animation = "none";
+      void line.offsetWidth; // Trigger reflow
+      line.style.animation = "animateLine 3s linear forwards";
+    }
+
+    setInterval(restartAnimation, 10000);
+    restartAnimation();
+  </script>
+</body>
+</html>
